@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem Finder — auto mode example</title>
+    <style>
+      :root {
+        color: #172033;
+        background: #f5f7fb;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top left, rgba(83, 105, 255, 0.16), transparent 32rem), #f5f7fb;
+      }
+      .page-shell { width: 1120px; margin: 0 auto; padding: 48px 0; }
+      .eyebrow {
+        margin: 0 0 8px;
+        color: #5369ff;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      h2 { margin-bottom: 12px; font-size: 2rem; letter-spacing: -0.04em; }
+      .hero-copy, .auto-report-result { color: #5f6b7e; line-height: 1.7; }
+      .analysis-card {
+        border: 1px solid rgba(23, 32, 51, 0.08);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 24px 80px rgba(26, 37, 77, 0.08);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: start;
+        padding: 28px;
+      }
+      .analysis-form {
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) 220px auto;
+        gap: 14px;
+        align-items: end;
+      }
+      label { display: grid; gap: 8px; color: #344054; font-size: 0.9rem; font-weight: 700; }
+      input, select {
+        width: 100%;
+        border: 1px solid #d8deea;
+        border-radius: 14px;
+        background: #fff;
+        color: #172033;
+        padding: 13px 14px;
+      }
+      button {
+        border: 0;
+        border-radius: 14px;
+        background: #172033;
+        color: #fff;
+        font-weight: 800;
+        padding: 14px 18px;
+      }
+      .pipeline-note { margin: 0 0 16px; font-size: 0.85rem; color: #667085; }
+      .auto-report-result h3 { margin: 16px 0 8px; color: #1f2a3d; font-size: 1rem; }
+      .pareto-table-wrap { overflow-x: auto; margin: 12px 0 20px; }
+      .pareto-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+      .pareto-table th, .pareto-table td {
+        border: 1px solid #d7dce5;
+        padding: 8px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+      .pareto-table th { background: #f5f7fb; color: #344054; }
+      .source-links, .theme-sources { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+      .source-links a, .theme-sources a, .auto-report-result li a {
+        color: #6941c6;
+        text-decoration: none;
+      }
+      .auto-report-result ul { margin: 12px 0; padding-left: 20px; }
+      .email-status-ok { margin-top: 16px; color: #027a48; }
+    </style>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="analysis-card">
+        <div>
+          <p class="eyebrow">Auto mode</p>
+          <h2>Daily or weekly pain radar</h2>
+          <p class="hero-copy">
+            No topic needed. LLM classifies real pain points (not news or updates),
+            extracts buildable problems, and emails a Pareto breakdown.
+          </p>
+        </div>
+
+        <form class="analysis-form">
+          <label>
+            <span>Report email</span>
+            <input type="email" value="you@example.com" readonly />
+          </label>
+          <label>
+            <span>Schedule</span>
+            <select><option>Daily (last 1 day)</option></select>
+          </label>
+          <button type="button">Run auto report now</button>
+        </form>
+
+        <div class="auto-report-result">
+          <p>
+            48 posts fetched (42 API calls) → 18 traction-qualified → 9 LLM pain
+            signals → 7 validated problems for last 1 day.
+          </p>
+          <p class="pipeline-note">
+            Share and ranking use traction: points + comments × 3, deduped per thread.
+          </p>
+
+          <h3>Pareto breakdown</h3>
+          <div class="pareto-table-wrap">
+            <table class="pareto-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Theme</th>
+                  <th>Products</th>
+                  <th>Sources</th>
+                  <th>Problems</th>
+                  <th>Threads</th>
+                  <th>Traction</th>
+                  <th>Share</th>
+                  <th>Cumulative</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Stripe billing and invoicing pain</td>
+                  <td>Stripe</td>
+                  <td><span class="source-links"><a href="#">Source 1</a></span></td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td>90</td>
+                  <td>42%</td>
+                  <td>42%</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>CI queue wait times for small teams</td>
+                  <td>GitHub Actions</td>
+                  <td><span class="source-links"><a href="#">Source 1</a><a href="#">Source 2</a></span></td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>54</td>
+                  <td>25%</td>
+                  <td>67%</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>GPU cluster resource over-reservation</td>
+                  <td>—</td>
+                  <td><span class="source-links"><a href="#">Source 1</a></span></td>
+                  <td>2</td>
+                  <td>1</td>
+                  <td>38</td>
+                  <td>18%</td>
+                  <td>85%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Headline themes (~80% of traction)</h3>
+          <ul>
+            <li>
+              <strong>Stripe billing and invoicing pain</strong> (Stripe) — 42%
+              traction · 3 problems · 2 threads · score 90: Founders complain about
+              Stripe billing workflows and invoice sync.
+              <p class="theme-sources">Sources: <a href="#">Source 1</a></p>
+              <ul>
+                <li><a href="#">Stripe invoicing is painful for small teams.</a></li>
+              </ul>
+            </li>
+            <li>
+              <strong>CI queue wait times for small teams</strong> (GitHub Actions) —
+              25% traction · 2 problems · 2 threads · score 54: Developers lose hours
+              waiting on shared CI runners.
+              <p class="theme-sources">Sources: <a href="#">Source 1</a> <a href="#">Source 2</a></p>
+            </li>
+          </ul>
+
+          <p class="email-status-ok">Email sent to you@example.com</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
