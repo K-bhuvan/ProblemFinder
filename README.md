@@ -9,6 +9,33 @@ Find startup-worthy pain points from public forum discussions. This MVP focuses 
 - **Daily email digest** — previous day's top problem themes (Vercel Cron)
 - **Source links** — every cluster links back to original HN threads
 
+## Example
+
+### Search by topic
+
+30-day lookback — input query, pipeline stats, and ranked cluster with HN source links:
+
+![Search by topic: hardware technology query with HPC cluster output](docs/images/example-search.png)
+
+*Query:* `find problems around hardware technology that can be solved using software`  
+*Result:* 33 posts → 1 validated problem → **Resource Reservation Anxiety in HPC** (traction 187, severity High)
+
+> Use a **30–90 day** lookback for broad topics. A 7-day window often returns no posts.
+
+### Auto mode
+
+No topic — scans HN for the last 24 hours, builds a Pareto table, and emails the digest:
+
+![Auto mode: daily Pareto breakdown and headline themes](docs/images/example-auto.png)
+
+*Schedule:* Daily (last 1 day) · Pareto-ranked themes with source links · email on completion
+
+To regenerate screenshots after UI changes:
+
+```bash
+node scripts/capture-readme-screenshot.mjs
+```
+
 ## Stack
 
 - Next.js 16 (App Router), TypeScript, React 19
@@ -21,7 +48,7 @@ Find startup-worthy pain points from public forum discussions. This MVP focuses 
 
 ```bash
 git clone https://github.com/K-bhuvan/ProblemFinder.git
-cd problem_finder
+cd ProblemFinder
 npm install
 cp .env.example .env.local
 # Fill in OPENAI_API_KEY, RESEND_API_KEY, AUTO_REPORT_EMAIL, CRON_SECRET
