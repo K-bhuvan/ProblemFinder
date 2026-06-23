@@ -20,7 +20,7 @@ Find startup-worthy pain points from public forum discussions. This MVP focuses 
 ## Quick start (local)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/problem_finder.git
+git clone https://github.com/K-bhuvan/ProblemFinder.git
 cd problem_finder
 npm install
 cp .env.example .env.local
