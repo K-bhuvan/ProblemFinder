@@ -20,3 +20,4 @@ CUsers*/
 .DS_Store
 *.log
 plan.md
+.cursor/
